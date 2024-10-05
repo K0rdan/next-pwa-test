@@ -21,6 +21,5 @@ export default function manifest(): MetadataRoute.Manifest {
         type: 'image/png',
       },
     ],
-    scope: 'https://192.168.1.140:3000/',
   };
 }

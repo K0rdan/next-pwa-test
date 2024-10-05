@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { subscribeUser, unsubscribeUser, sendNotification } from './actions';
-import Image from 'next/image';
-import styles from './page.module.css';
 
 function urlBase64ToUint8Array(base64String: string) {
   const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
@@ -104,7 +102,8 @@ function InstallPrompt() {
 
   useEffect(() => {
     setIsIOS(
-      /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream,
+      /iPad|iPhone|iPod/.test(navigator.userAgent) &&
+        !(window as Window & { MSStream?: unknown }).MSStream,
     );
 
     setIsStandalone(window.matchMedia('(display-mode: standalone)').matches);
@@ -125,7 +124,7 @@ function InstallPrompt() {
             {' '}
             ⎋{' '}
           </span>
-          and then "Add to Home Screen"
+          {`and then "Add to Home Screen"`}
           <span role='img' aria-label='plus icon'>
             {' '}
             ➕{' '}
